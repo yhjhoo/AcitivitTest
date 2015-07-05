@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="Examples" id="definitions">
+  <process id="checkCreditProcess" isExecutable="true">
+    <startEvent id="theStart"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="theStart" targetRef="verifyCreditHistoryTask"></sequenceFlow>
+    <userTask id="verifyCreditHistoryTask" name="Verify credit history"></userTask>
+    <sequenceFlow id="flow2" sourceRef="verifyCreditHistoryTask" targetRef="approvalDecision"></sequenceFlow>
+    <exclusiveGateway id="approvalDecision"></exclusiveGateway>
+    <sequenceFlow id="flow3" sourceRef="approvalDecision" targetRef="contactCustomerTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!creditApproved}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="approvalDecision" targetRef="normalEnd">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${creditApproved}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="contactCustomerTask" name="Contact customer for further information"></userTask>
+    <sequenceFlow id="flow5" sourceRef="contactCustomerTask" targetRef="customerContactedEnd"></sequenceFlow>
+    <endEvent id="customerContactedEnd"></endEvent>
+    <endEvent id="normalEnd"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_checkCreditProcess">
+    <bpmndi:BPMNPlane bpmnElement="checkCreditProcess" id="BPMNPlane_checkCreditProcess">
+      <bpmndi:BPMNShape bpmnElement="theStart" id="BPMNShape_theStart">
+        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="82.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="verifyCreditHistoryTask" id="BPMNShape_verifyCreditHistoryTask">
+        <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="67.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approvalDecision" id="BPMNShape_approvalDecision">
+        <omgdc:Bounds height="40.0" width="40.0" x="230.0" y="79.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="contactCustomerTask" id="BPMNShape_contactCustomerTask">
+        <omgdc:Bounds height="97.0" width="151.0" x="320.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="customerContactedEnd" id="BPMNShape_customerContactedEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="630.0" y="33.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="normalEnd" id="BPMNShape_normalEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="355.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="35.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="97.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="180.0" y="97.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="97.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="230.0" y="99.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="270.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="48.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="270.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="355.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="471.0" y="48.0"></omgdi:waypoint>
+        <omgdi:waypoint x="539.0" y="47.0"></omgdi:waypoint>
+        <omgdi:waypoint x="630.0" y="50.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
