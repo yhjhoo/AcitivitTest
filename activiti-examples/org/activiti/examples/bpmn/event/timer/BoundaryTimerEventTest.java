@@ -27,7 +27,7 @@ import org.activiti.engine.test.Deployment;
 public class BoundaryTimerEventTest {
   @Rule public ActivitiRule activitiRule = new ActivitiRule();
 
-  @Deployment
+  @Deployment(resources = {"org/activiti/examples/bpmn/event/timer/BoundaryTimerEventTest.testInterruptingTimerDuration.bpmn"})
   @Test
   public void testInterruptingTimerDuration() {
     
