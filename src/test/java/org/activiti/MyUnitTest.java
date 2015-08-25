@@ -2,7 +2,11 @@ package org.activiti;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+<<<<<<< HEAD
 import org.activiti.engine.history.HistoricTaskInstance;
+=======
+import org.activiti.engine.delegate.DelegateTask;
+>>>>>>> branch 'master' of https://github.com/yhjhoo/AcitivitTest.git
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -13,11 +17,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import org.activiti.spring.SpringProcessEngineConfiguration;;
+
 
 public class MyUnitTest {
 	
 	@Rule
 	public ActivitiRule activitiRule = new ActivitiRule();
+	
+	DelegateTask task;;
 	
 	@Test
 	@Deployment(resources = {"org/activiti/test/my-process.bpmn"})
